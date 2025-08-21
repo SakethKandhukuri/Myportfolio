@@ -1,9 +1,223 @@
-<! DOCTYPE html>
-<htm1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Commit 1 (Structure): Basic HTML skeleton and resource list markup -->
+  <!-- Commit 2 (Styling): Add the <style> block below -->
+  <!-- Commit 3 (Links): Fill real links in the resource items -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Class Resource Hub</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --muted: #8ea1b2;
+      --text: #e6eef6;
+      --accent: #5cc8ff;
+      --accent-2: #7ee787;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, #16243e 0%, rgba(11,18,32,0) 70%),
+                  radial-gradient(1200px 800px at 110% 10%, #10304a 0%, rgba(11,18,32,0) 70%),
+                  var(--bg);
+      color: var(--text);
+    }
+    header {
+      position: sticky; top: 0; z-index: 2;
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: rgba(11,18,32,0.7);
+      border-bottom: 1px solid rgba(142,161,178,0.2);
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 16px 20px; }
+    .title { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .title h1 { font-size: clamp(20px, 4vw, 32px); margin: 0; letter-spacing: 0.2px; }
+    .tagline { color: var(--muted); font-size: 14px; }
 
-<head><title>My Portfolio</title></head>
+    .toolbar { display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-top: 12px; }
+    input[type="search"] {
+      width: 100%; padding: 12px 14px; border-radius: 12px; outline: none;
+      border: 1px solid rgba(142,161,178,0.25);
+      background: #0f1729; color: var(--text);
+    }
+    select, button, .pill {
+      padding: 10px 12px; border-radius: 999px; border: 1px solid rgba(142,161,178,0.25);
+      background: #0f1729; color: var(--text);
+    }
+    .pill { display: inline-flex; align-items: center; gap: 8px; }
+
+    main .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px; padding: 24px 20px 60px; max-width: 1000px; margin: 0 auto;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(142,161,178,0.2);
+      border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(92,200,255,0.6);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .meta { font-size: 12px; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .links a {
+      text-decoration: none; font-size: 14px; border: 1px solid rgba(142,161,178,0.25);
+      padding: 8px 10px; border-radius: 10px; transition: background .12s ease, color .12s ease, border-color .12s ease;
+      color: var(--text);
+    }
+    .links a:hover { background: #0b2333; border-color: var(--accent); }
+    .badge {
+      font-size: 11px; color: #0c1a0f; background: var(--accent-2); border-radius: 999px; padding: 4px 8px; font-weight: 600;
+    }
+    footer { color: var(--muted); border-top: 1px solid rgba(142,161,178,0.2); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .muted { color: var(--muted); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
 <body>
-<h1>Hello! I'm a budding software engineer .< /h1>
-<p>This is my first web page using Git .< /p>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <h1>Class Resource Hub</h1>
+        <span class="badge">CSE – Semester</span>
+      </div>
+      <p class="tagline">A simple, shareable list of study resources for our class. PRs welcome!</p>
+      <div class="toolbar">
+        <label class="sr-only" for="search">Search</label>
+        <input id="search" type="search" placeholder="Search topic or site (e.g., DSA, Git, OS)…" oninput="filterCards(this.value)">
+        <select id="filter" onchange="filterCards(document.getElementById('search').value)">
+          <option value="all">All topics</option>
+          <option value="dsa">DSA</option>
+          <option value="web">Web</option>
+          <option value="git">Git</option>
+          <option value="os">OS</option>
+          <option value="math">Math</option>
+          <option value="general">General</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" id="cards">
+      <!-- Example card -->
+      <article class="card" data-tags="web html css" data-title="HTML & CSS – MDN">
+        <h3>MDN Web Docs – HTML & CSS</h3>
+        <div class="meta"><span>Topic: Web</span><span>Type: Docs</span></div>
+        <p class="muted">Official documentation for HTML/CSS fundamentals, layout, and modern best practices.</p>
+        <div class="links">
+          <a href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank" rel="noopener">Start Learning</a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener">CSS Reference</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="dsa algorithms practice" data-title="DSA – GeeksforGeeks">
+        <h3>Data Structures & Algorithms – GeeksforGeeks</h3>
+        <div class="meta"><span>Topic: DSA</span><span>Type: Tutorials</span></div>
+        <p class="muted">Step-by-step guides and problems for arrays, trees, graphs, DP, and more.</p>
+        <div class="links">
+          <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" rel="noopener">DSA Guide</a>
+          <a href="https://practice.geeksforgeeks.org/home" target="_blank" rel="noopener">Practice</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="git version-control" data-title="Git – Official Docs">
+        <h3>Git – Official Documentation</h3>
+        <div class="meta"><span>Topic: Git</span><span>Type: Docs</span></div>
+        <p class="muted">Authoritative reference for Git basics, branching, merging, and workflows.</p>
+        <div class="links">
+          <a href="https://git-scm.com/docs" target="_blank" rel="noopener">Git Docs</a>
+          <a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Interactive Branching</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="os operating-systems" data-title="Operating Systems – NPTEL">
+        <h3>NPTEL – Operating Systems</h3>
+        <div class="meta"><span>Topic: OS</span><span>Type: Course</span></div>
+        <p class="muted">Free video lectures and notes on processes, scheduling, memory, and file systems.</p>
+        <div class="links">
+          <a href="https://nptel.ac.in/courses/106/106/106106144/" target="_blank" rel="noopener">Course Page</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="math discrete mathematics" data-title="Discrete Math – Khan Academy">
+        <h3>Khan Academy – Discrete Mathematics</h3>
+        <div class="meta"><span>Topic: Math</span><span>Type: Lessons</span></div>
+        <p class="muted">Graph theory, logic, sets, combinatorics, and proofs with short videos and exercises.</p>
+        <div class="links">
+          <a href="https://www.khanacademy.org/math/discrete-math" target="_blank" rel="noopener">Start Unit</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="general courses cs50" data-title="CS50 – Harvard">
+        <h3>CS50 – Introduction to Computer Science</h3>
+        <div class="meta"><span>Topic: General</span><span>Type: Course</span></div>
+        <p class="muted">Famous beginner-friendly course covering C, Python, web, and problem solving.</p>
+        <div class="links">
+          <a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener">Course Home</a>
+          <a href="https://www.youtube.com/c/cs50" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="practice coding leetcode dsa" data-title="LeetCode">
+        <h3>LeetCode – Problem Practice</h3>
+        <div class="meta"><span>Topic: DSA</span><span>Type: Practice</span></div>
+        <p class="muted">Practice problems grouped by difficulty to prepare for interviews and contests.</p>
+        <div class="links">
+          <a href="https://leetcode.com/explore/" target="_blank" rel="noopener">Explore</a>
+          <a href="https://leetcode.com/problemset/all/" target="_blank" rel="noopener">Problemset</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="web frontend roadmap" data-title="Frontend Roadmap">
+        <h3>Frontend Developer Roadmap</h3>
+        <div class="meta"><span>Topic: Web</span><span>Type: Guide</span></div>
+        <p class="muted">Visual roadmap of topics to learn for modern frontend development.</p>
+        <div class="links">
+          <a href="https://roadmap.sh/frontend" target="_blank" rel="noopener">Open Roadmap</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="notes templates" data-title="Class Notes Template">
+        <h3>Shared Class Notes (Template)</h3>
+        <div class="meta"><span>Topic: General</span><span>Type: Template</span></div>
+        <p class="muted">Make a copy of this Google Doc template to compile class notes and tips.</p>
+        <div class="links">
+          <a href="https://docs.google.com/document/u/0/" target="_blank" rel="noopener">Open Docs</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Made with ? by our class • <span class="muted">Found a great resource? Open a PR or share the link with the class rep.</span></p>
+      <p class="muted">© <span id="year"></span> Class Resource Hub</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple filter logic for search + topic dropdown
+    function filterCards(query) {
+      const q = (query || '').toLowerCase().trim();
+      const topic = document.getElementById('filter').value;
+      const cards = Array.from(document.querySelectorAll('#cards .card'));
+      cards.forEach(card => {
+        const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+        const title = (card.getAttribute('data-title') || '').toLowerCase();
+        const matchText = !q || tags.includes(q) || title.includes(q);
+        const matchTopic = topic === 'all' || tags.includes(topic);
+        card.style.display = (matchText && matchTopic) ? '' : 'none';
+      });
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

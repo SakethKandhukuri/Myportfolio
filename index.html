@@ -1,26 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>My Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Blog Website</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the project */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111;
+            color: #ddd;
+        }
+        /* Style for the accent color - Gold */
+        .accent-gold {
+            color: #f1c40f;
+        }
+        .bg-accent-gold {
+            background-color: #f1c40f;
+        }
+        .border-accent-gold {
+            border-color: #f1c40f;
+        }
+        /* Style for the accent color - Blue */
+        .accent-blue {
+            color: #3498db;
+        }
+        .bg-accent-blue {
+            background-color: #3498db;
+        }
+        .border-accent-blue {
+            border-color: #3498db;
+        }
+        /* Custom focus ring color */
+        .focus\:ring-accent-gold:focus {
+            --tw-ring-color: #f1c40f;
+        }
+    </style>
 </head>
-<body>
-  <h1>Welcome to My Blog</h1>
-  <ul>
-    <li>
-      <h2>Learning Git & GitHub</h2>
-      <p>A beginner’s guide to version control and collaboration.</p>
-    </li>
-    <li>
-      <h2>Introduction to Web Development</h2>
-      <p>Understanding HTML, CSS, and JavaScript basics.</p>
-    </li>
-    <li>
-      <h2>Problem-Solving with C Programming</h2>
-      <p>Tips and examples for improving coding logic.</p>
-    </li>
-  </ul>
+<body class="antialiased">
 
-  <a href="contact.html">Go to Contact Page</a>
+    <!-- =========== Navigation Bar =========== -->
+    <header class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-white">MyBlog</div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-accent-gold transition duration-300">Home</a>
+                    <a href="#blogs" class="text-gray-300 hover:text-accent-gold transition duration-300">Blogs</a>
+                    <a href="#contact" class="text-gray-300 hover:text-accent-gold transition duration-300">Contact</a>
+                </nav>
+                 <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+             <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <a href="#home" class="block text-gray-300 hover:text-accent-gold py-2">Home</a>
+                <a href="#blogs" class="block text-gray-300 hover:text-accent-gold py-2">Blogs</a>
+                <a href="#contact" class="block text-gray-300 hover:text-accent-gold py-2">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- =========== Landing Page (Hero Section) =========== -->
+        <section id="home" class="min-h-screen flex items-center justify-center bg-black text-white text-center pt-20">
+            <div class="container mx-auto px-6">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">Welcome to <span class="accent-gold">My Blog</span></h1>
+                <p class="text-lg md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">Sharing Knowledge, Ideas & Updates on the latest in tech and design.</p>
+                <a href="#blogs" class="bg-accent-gold text-black font-bold py-3 px-8 rounded-full text-lg hover:bg-yellow-400 transition duration-300 ease-in-out transform hover:scale-105">
+                    Explore Posts
+                </a>
+            </div>
+        </section>
+
+        <!-- =========== Blog List Section =========== -->
+        <section id="blogs" class="py-20 bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white">Latest Articles</h2>
+                    <p class="text-gray-400 mt-2">Discover insights and stories from our authors.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-black rounded-lg overflow-hidden shadow-lg hover:shadow-accent-gold/20 transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-3 text-white">Mastering Modern CSS</h3>
+                            <p class="text-gray-400 leading-relaxed">
+                                A deep dive into Flexbox, Grid, and custom properties to create responsive and dynamic layouts for the modern web.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Blog Post 2 -->
+                    <div class="bg-black rounded-lg overflow-hidden shadow-lg hover:shadow-accent-gold/20 transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-3 text-white">The Rise of Serverless</h3>
+                            <p class="text-gray-400 leading-relaxed">
+                                Explore how serverless architecture is changing the way we build and deploy applications, reducing costs and complexity.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Blog Post 3 -->
+                    <div class="bg-black rounded-lg overflow-hidden shadow-lg hover:shadow-accent-gold/20 transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-3 text-white">UI/UX Design Principles</h3>
+                            <p class="text-gray-400 leading-relaxed">
+                                Learn the fundamental principles of user interface and user experience design to create products that are both beautiful and intuitive.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== Contact Section =========== -->
+        <section id="contact" class="py-20 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white">Get In Touch</h2>
+                    <p class="text-gray-400 mt-2">Have a question or want to work together? Let's connect.</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                        <input type="hidden" name="access_key" value="e893feb2-597d-49b6-897c-b13384f2a01b">
+                        <div>
+                            <label for="name" class="sr-only">Name</label>
+                            <input type="text" name="name" id="name" placeholder="Your Name" required class="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-gold transition duration-300">
+                        </div>
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Your Email" required class="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-gold transition duration-300">
+                        </div>
+                        <div>
+                            <label for="subject" class="sr-only">Subject</label>
+                            <input type="text" name="subject" id="subject" placeholder="Subject" required class="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-gold transition duration-300">
+                        </div>
+                        <div>
+                            <label for="message" class="sr-only">Message</label>
+                            <textarea name="message" id="message" rows="5" placeholder="Your Message" required class="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-gold transition duration-300"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-accent-blue text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                    <div id="form-result" class="mt-6 text-center text-lg"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========== Footer Section =========== -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <div class="mb-4">
+                <a href="#home" class="text-gray-400 hover:text-accent-gold px-3 transition duration-300">Home</a>
+                <span class="text-gray-600">|</span>
+                <a href="#blogs" class="text-gray-400 hover:text-accent-gold px-3 transition duration-300">Blogs</a>
+                <span class="text-gray-600">|</span>
+                <a href="#contact" class="text-gray-400 hover:text-accent-gold px-3 transition duration-300">Contact</a>
+            </div>
+            <p>&copy; 2025 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile menu toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileMenuLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+
+        // --- Contact Form Submission ---
+        const form = document.getElementById('contact-form');
+        const result = document.getElementById('form-result');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            result.innerHTML = "Sending..."
+            result.classList.remove('text-green-500', 'text-red-500');
+            result.classList.add('text-white');
+
+            fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let jsonResponse = await response.json();
+                    if (response.status == 200) {
+                        result.innerHTML = "Form submitted successfully!";
+                        result.classList.add('text-green-500');
+                    } else {
+                        console.log(response);
+                        result.innerHTML = jsonResponse.message;
+                        result.classList.add('text-red-500');
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Something went wrong!";
+                    result.classList.add('text-red-500');
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        result.innerHTML = '';
+                    }, 3000);
+                });
+        });
+    </script>
+
 </body>
 </html>

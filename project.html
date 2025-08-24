@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog Layout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      background: #444;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      display: flex;
+      margin: 20px;
+      gap: 20px;
+    }
+    .main-content {
+      flex: 3;
+    }
+    .blog-post {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+    .blog-post h2 {
+      margin-top: 0;
+    }
+    .sidebar {
+      flex: 1;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Blog</h1>
+    <p>Sharing knowledge and updates</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Blogs</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+    <!-- Main Blog Content -->
+    <div class="main-content">
+      <div class="blog-post">
+        <h2>Learning Web Development</h2>
+        <p><em>Posted on Aug 20, 2025</em></p>
+        <p>A beginner’s guide to HTML, CSS, and JavaScript to kickstart your coding journey.</p>
+      </div>
+
+      <div class="blog-post">
+        <h2>Git & GitHub Basics</h2>
+        <p><em>Posted on Aug 18, 2025</em></p>
+        <p>Understand version control and how to collaborate on projects using GitHub.</p>
+      </div>
+
+      <div class="blog-post">
+        <h2>Tips for Effective Learning</h2>
+        <p><em>Posted on Aug 15, 2025</em></p>
+        <p>Simple strategies to improve your learning speed and retention.</p>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>About Me</h3>
+      <p>Hello! I'm Saketh, a CSE student sharing my journey and knowledge here.</p>
+
+      <h3>Categories</h3>
+      <ul>
+        <li>Web Development</li>
+        <li>Programming</li>
+        <li>Learning Tips</li>
+        <li>Tech News</li>
+      </ul>
+
+      <h3>Recent Posts</h3>
+      <ul>
+        <li>Learning Web Development</li>
+        <li>Git & GitHub Basics</li>
+        <li>Tips for Effective Learning</li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 My Blog. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
